@@ -1,7 +1,7 @@
 {
   "name": "message-board",
   "version": "1.0.0",
-  "description": "message board app w/node psql & graphql",
+  "description": "Message board app using Express, psql, & graphql",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
