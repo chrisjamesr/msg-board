@@ -1,3 +1,4 @@
+require('dotenv').config();
 const pgPromise = require('pg-promise');
 
 // const connString = 'postgresql://msg_board@localhost:5432/message_board';
