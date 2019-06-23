@@ -1,4 +1,4 @@
-const {psql} = require('./psqlAdapter');
+const {db} = require('./services/psqlAdapter');
 
 exports.resolver = {
     Query:{
