@@ -1,6 +1,8 @@
 const express = require('express');
 const graphqlHTTP = require('express-graphql');
 const graphql = require('graphql');
+const db = require('./services/psqlAdapter')
+const schema = require('./schemas/schema')
 
 const port = process.env.PORT || 3001
 const app = express();
