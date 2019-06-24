@@ -1,21 +1,27 @@
 const express = require('express');
 const graphqlHTTP = require('express-graphql');
 const graphql = require('graphql');
+const { GraphQLSchema } = graphql;
 const db = require('./services/psqlAdapter')
-const schema = require('./schemas/schema')
+const { query } = require('./schemas/queries');
+const { mutation } = require('./schemas/mutations.js')
 
 const port = process.env.PORT || 3001
 const app = express();
 
-app.use('/api', graphqlHTTP({
+const schema = new GraphQLSchema({
+    query
+})
+
+app.use('/', graphqlHTTP({
     schema: schema,
     graphiql: true,
 }));
 
 
-app.get('/', (req,res) => {
-    res.send('Root Route')
-});
+// app.get('/', (req,res) => {
+//     res.send('Root Route')
+// });
 
 
 app.listen(port, ()=>{
