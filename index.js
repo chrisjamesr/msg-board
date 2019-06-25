@@ -10,7 +10,8 @@ const port = process.env.PORT || 3001
 const app = express();
 
 const schema = new GraphQLSchema({
-    query
+    query,
+    mutation
 })
 
 app.use('/', graphqlHTTP({
