@@ -10,7 +10,8 @@ const MessageType = new GraphQLObjectType({
     fields: {
         id: {type: GraphQLString },
         content: {type: GraphQLString },
-        user: {type: GraphQLString }
+        email: {type: GraphQLString },
+        created_at: {type: GraphQLString }
     }
 });
 
@@ -25,3 +26,6 @@ const UserType = new GraphQLObjectType({
 
 exports.MessageType = MessageType;
 exports.UserType = UserType;
+
+
+
