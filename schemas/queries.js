@@ -10,15 +10,18 @@ const RootQuery = new GraphQLObjectType({
     type: "Query",
     fields: {
         messages: {
-            types: GraphQLList(MessageType),
+            type: GraphQLList(MessageType),
             // args: { id: { type: GraphQLID } }, 
             resolve(parentValue, args){          
                 const query = 'SELECT * FROM messages'
                 return db.manyOrNone(query)
                     .then(res=> res)
-                    .catch(err=> console.log(err));
+                    .catch(err=> err);
             }
-        }
+        },
+        // message: {
+        //     types: 
+        // }
     }
 });
 
