@@ -12,16 +12,14 @@ const RootQuery = new GraphQLObjectType({
         messages: {
             type: GraphQLList(MessageType),
             // args: { id: { type: GraphQLID } }, 
-            resolve(parentValue, args){          
+            resolve(parentValue, args){   
+                console.log(parentValue, args)       ;
                 const query = 'SELECT * FROM messages'
                 return db.manyOrNone(query)
                     .then(res=> res)
                     .catch(err=> err);
             }
         },
-        // message: {
-        //     types: 
-        // }
     }
 });
 
