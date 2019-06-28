@@ -14,7 +14,7 @@ const schema = new GraphQLSchema({
     mutation
 })
 
-app.use('/api', graphqlHTTP({
+app.use('/graphql', graphqlHTTP({
     schema: schema,
     graphiql: true,
 }));
