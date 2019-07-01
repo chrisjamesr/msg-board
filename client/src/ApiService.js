@@ -6,7 +6,7 @@ class ApiService {
 
     async getGraphqlData(resource, params, fields){
         const query = `{${resource} ${this.paramsToString(params)} ${fields}}`;
-        console.log(query);
+        // console.log(query);
         const res = await fetch(this.apiURL, {
             method: 'POST',
             mode: 'cors',
