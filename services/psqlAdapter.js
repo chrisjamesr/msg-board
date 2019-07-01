@@ -16,7 +16,6 @@ const config = {
 };
 
 const db = pgp(config);
-console.log(config);
 
 db.one('select * from messages limit 1')
     .then(res=> {
