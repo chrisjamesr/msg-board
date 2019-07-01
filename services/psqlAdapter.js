@@ -17,11 +17,11 @@ const config = {
 
 const db = pgp(config);
 
-db.one('select * from messages limit 1')
-    .then(res=> {
-        console.log(res);
-    })
-    .catch(err=> console.log(err));
+// db.one('select * from messages limit 1')
+//     .then(res=> {
+//         console.log(res);
+//     })
+//     .catch(err=> console.log(err));
     
 
 exports.db = db;
