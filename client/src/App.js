@@ -1,26 +1,52 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import apiService from './ApiService'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(){
+    super()
+    this.state = {
+      messages: []
+    }
+  }
+  
+  componentDidMount(){
+    apiService.getMessages().then(msgs=> {
+      this.setState({
+        messages: msgs
+      });
+    })
+  }
+
+  handleClick = () => {
+    apiService.postMessage({
+      content: 'onClick static text mutation test from console', 
+      email:'email.com'});
+  }
+
+  renderMessages = () => {
+    if (!!this.state.messages.length) {
+      return (
+        <ul> 
+          { 
+            this.state.messages.map((msg,idx) => {
+              return <p key={msg.id}>{msg.content}</p>
+            })
+          }
+        </ul>)
+    }
+  }
+
+  render(){
+
+    return (
+      <div className="App">
+        <div onClick = {this.handleClick}>
+          {this.renderMessages() }
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
