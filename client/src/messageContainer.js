@@ -1,41 +1,59 @@
 import React, { Component } from 'react';
-import {postMessage} from './ApiService';
+import apiService from './ApiService';
 
-class Message extends Component {
+class MessagesContainer extends Component {
     constructor(){
         super()
-        this.state = {
-            content: '',
-            email: ''
-        }
+        this.state = { messages: [] }
     }
 
     componentDidMount(){
-        this.setState({
-            content: this.props.content,
-            email: this.props.email
+        apiService.getMessages().then(msgs=> {
+          this.setState({
+            messages: msgs
+          });
         })
     }
+  
+  renderMessages = () => {
+    if (!!this.state.messages.length) {
+      return (
+        this.state.messages.map((msg,idx) => {
+          return (
+            <MessageComponent
+              key={msg.id}
+              content={msg.content}
+              email={msg.email}
+              />
+            )
+        })
+      )
+    }
+  }
     render(){
-        const {content, email} = this.state;
-        return (
-            <div>
-                <MessageComponent {...this.props}/>
-            </div>
-        )
+        return <main className="msg-container"> { this.renderMessages() }</main>; 
     }
 
 
 }
     
-export default Message
+export default MessagesContainer
 
 function MessageComponent({content, email}){
+    const messageStyle = {
+        width: '180px',
+        height: '120px',
+        margin: '10px 20px',
+        border: '.5px solid black',
+        padding: '2%',
+    }
     return (
-        <div>
-            <p>
-                {content} - <em> {email} </em>
-            </p>    
+        <div style={messageStyle}>
+            
+                {content} 
+                <br/> 
+                <em> {email} </em>
+            
         </div>
     )
 }
