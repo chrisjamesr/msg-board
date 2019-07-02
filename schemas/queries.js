@@ -13,7 +13,6 @@ const RootQuery = new GraphQLObjectType({
             type: GraphQLList(MessageType),
             // args: { id: { type: GraphQLID } }, 
             resolve(parentValue, args){   
-                console.log(parentValue, args)       ;
                 const query = 'SELECT * FROM messages'
                 return db.manyOrNone(query)
                     .then(res=> res)
